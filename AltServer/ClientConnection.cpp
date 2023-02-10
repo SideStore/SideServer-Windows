@@ -5,6 +5,7 @@
 
 #include <WinSock2.h>
 #include <filesystem>
+#include <codecvt>
 
 #include "DeviceManager.hpp"
 #include "AnisetteDataManager.h"

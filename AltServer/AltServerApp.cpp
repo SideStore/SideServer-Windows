@@ -40,7 +40,7 @@
 
 #include "resource.h"
 
-#include <winsparkle.h>
+#include <winsparkle/winsparkle.h>
 
 #define odslog(msg) { std::stringstream ss; ss << msg << std::endl; OutputDebugStringA(ss.str().c_str()); }
 
@@ -69,17 +69,10 @@ const char* APPLE_FOLDER_KEY = "AppleFolder";
 
 const char* STARTUP_ITEMS_KEY = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
 
-#if STAGING
-std::wstring altstoreSourceURL = L"https://f000.backblazeb2.com/file/altstore-staging/apps-staging.json";
-#else
-std::wstring altstoreSourceURL = L"https://apps.altstore.io";
-#endif
 
-#if BETA
-std::wstring altstoreBundleID = L"com.rileytestut.AltStore.Beta";
-#else
-std::wstring altstoreBundleID = L"com.rileytestut.AltStore";
-#endif
+std::wstring altstoreSourceURL = L"https://apps.sidestore.io";
+std::wstring altstoreBundleID = L"com.SideStore.SideStore";
+
 
 std::string _verificationCode;
 
@@ -381,6 +374,7 @@ AltServerApp::AltServerApp() : _appGroupSemaphore(1)
 		//TODO: Better error handling?
 		assert(false);
 	}
+	// CLSIDFromString(L"{96A5974D-D3A2-909A-B6BD-4FF84E7880F7}", &_notificationIconGUID);
 }
 
 AltServerApp::~AltServerApp()
@@ -1621,8 +1615,18 @@ pplx::task<std::shared_ptr<Application>> AltServerApp::InstallApp(std::shared_pt
 			auto serverID = this->serverID();
 			plist_dict_set_item(additionalValues, "ALTServerID", plist_new_string(serverID.c_str()));
 
+			/*DeviceManager::instance()->FetchPairingFile(device)
+				.then([=](std::shared_ptr<plist_t> pairingFile) {
+				char* pairingFile_char = NULL;
+				uint32_t pairingFile_length = 0;
+				plist_to_xml(pairingFile.get(), &pairingFile_char, &pairingFile_length);
+				odslog(pairingFile);
+				plist_dict_set_item(additionalValues, "ALTPairingFile", plist_new_string(pairingFile_char));
+				});*/
+			
+
 			auto machineIdentifier = certificate->machineIdentifier();
-			if (machineIdentifier.has_value())
+			if (machineIdentifier.has_value())	
 			{
 				auto encryptedData = certificate->encryptedP12Data(*machineIdentifier);
 				if (encryptedData.has_value())

@@ -15,6 +15,7 @@
 #include <libimobiledevice/afc.h>
 #include <libimobiledevice/misagent.h>
 #include <libimobiledevice/src/idevice.h>
+#include "common/userpref.h"
 
 #include <filesystem>
 
@@ -1574,6 +1575,53 @@ pplx::task<std::shared_ptr<NotificationConnection>> DeviceManager::StartNotifica
 		return notificationConnection;
 	});
 }
+
+
+/*pplx::task<std::shared_ptr<plist_t>> DeviceManager::FetchPairingFile(std::shared_ptr<Device> altDevice)
+{
+	return pplx::create_task([=] {
+		idevice_t device = NULL;
+		lockdownd_client_t client = NULL;
+		lockdownd_service_descriptor_t service = NULL;
+		//plist_t options = NULL;
+//		userpref__ upref = NULL;
+		userpref_error_t uerr = USERPREF_E_UNKNOWN_ERROR;
+		plist_t pair_record = NULL;
+		std::string pair_record_str;
+
+		auto cleanUp = [&]() {
+			if (service) {
+				lockdownd_service_descriptor_free(service);
+			}
+
+			if (client) {
+				lockdownd_client_free(client);
+			}
+
+			if (device) {
+				idevice_free(device);
+			}
+		};
+
+		// Find Device 
+		if (idevice_new_with_options(&device, altDevice->identifier().c_str(), (enum idevice_options)((int)IDEVICE_LOOKUP_NETWORK | (int)IDEVICE_LOOKUP_USBMUX)) != IDEVICE_E_SUCCESS)
+		{
+			throw ServerError(ServerErrorCode::DeviceNotFound);
+		}
+
+		// Connect to Device 
+		if (lockdownd_client_new_with_handshake(device, &client, "AltServer") != LOCKDOWN_E_SUCCESS)
+		{
+			throw ServerError(ServerErrorCode::ConnectionFailed);
+		}
+
+		get pairing record
+		userpref_read_pair_record(device->udid, &pair_record);
+		return std::make_shared<plist_t>(pair_record);
+	});
+}
+*/
+
 
 std::vector<std::shared_ptr<Device>> DeviceManager::connectedDevices() const
 {

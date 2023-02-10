@@ -23,8 +23,7 @@ extern "C" {
 
 #include "AppleAPI.hpp"
 
-#include <cpprest/http_compression.h>
-
+#include <openssl/evp.h>
 #include <openssl/pem.h>
 #include <openssl/pkcs12.h>
 
@@ -113,8 +112,11 @@ AppleAPI::AppleAPI() : _servicesClient(U("https://developerservices2.apple.com/s
 {
 	http_client_config config;
 	config.set_validate_certificates(false);
+	config.set_request_compressed_response(false);
 
 	_gsaClient = web::http::client::http_client(U("https://gsa.apple.com"), config);
+	_client = web::http::client::http_client(U("https://developerservices2.apple.com/services/QH65B2"), config);
+	_servicesClient = web::http::client::http_client(U("https://developerservices2.apple.com/services/v1"), config);
 
 //    volatile long response_counter = 0;
 //    auto response_count_handler =
@@ -854,6 +856,8 @@ pplx::task<plist_t> AppleAPI::SendRequest(std::string uri,
 		request.headers().add(pair.first, pair.second);
 	}
 
+	request.headers().add(header_names::accept_encoding, L"identity");
+
 	auto task = this->client().request(request)
 		.then([=](http_response response)
 			{
@@ -864,6 +868,20 @@ pplx::task<plist_t> AppleAPI::SendRequest(std::string uri,
 				odslog("Received response status code: " << response.status_code());
 				return response.extract_vector();
 			})
+				/*.then([=](std::string strData) {
+				std::string decompressedXML = strData;
+
+				odslog("data" << strData);
+				plist_t plist = nullptr;
+				plist_from_xml(decompressedXML.c_str(), (int)decompressedXML.size(), &plist);
+
+				if (plist == nullptr)
+				{
+					throw APIError(APIErrorCode::InvalidResponse);
+				}
+
+				return plist;
+					});*/
 				.then([=](std::vector<unsigned char> compressedData)
 					{
 						std::vector<uint8_t> decompressedData;
@@ -890,7 +908,7 @@ pplx::task<plist_t> AppleAPI::SendRequest(std::string uri,
 
 						return plist;
 					});
-
+					
 			free(plistXML);
 			plist_free(plist);
 
