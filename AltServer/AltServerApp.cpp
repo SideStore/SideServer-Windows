@@ -1608,16 +1608,9 @@ pplx::task<std::shared_ptr<Application>> AltServerApp::InstallApp(std::shared_pt
 
 			auto serverID = this->serverID();
 			plist_dict_set_item(additionalValues, "ALTServerID", plist_new_string(serverID.c_str()));
-
-			/*DeviceManager::instance()->FetchPairingFile(device)
-				.then([=](std::shared_ptr<plist_t> pairingFile) {
-				char* pairingFile_char = NULL;
-				uint32_t pairingFile_length = 0;
-				plist_to_xml(pairingFile.get(), &pairingFile_char, &pairingFile_length);
-				odslog(pairingFile);
-				plist_dict_set_item(additionalValues, "ALTPairingFile", plist_new_string(pairingFile_char));
-				});*/
 			
+			char * pairingFile = DeviceManager::instance()->FetchPairingFile(device).get();
+			plist_dict_set_item(additionalValues, "ALTPairingFile", plist_new_string(pairingFile));
 
 			auto machineIdentifier = certificate->machineIdentifier();
 			if (machineIdentifier.has_value())	
@@ -1644,6 +1637,9 @@ pplx::task<std::shared_ptr<Application>> AltServerApp::InstallApp(std::shared_pt
 
 			auto serverID = this->serverID();
 			plist_dict_set_item(additionalValues, "ALTServerID", plist_new_string(serverID.c_str()));
+
+			char* pairingFile = DeviceManager::instance()->FetchPairingFile(device).get();
+			plist_dict_set_item(additionalValues, "ALTPairingFile", plist_new_string(pairingFile));
         }
 
 		prepareInfoPlist(app, additionalValues);

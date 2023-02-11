@@ -1578,7 +1578,7 @@ pplx::task<std::shared_ptr<NotificationConnection>> DeviceManager::StartNotifica
 }
 
 
-pplx::task<std::shared_ptr<plist_t>> DeviceManager::FetchPairingFile(std::shared_ptr<Device> altDevice)
+pplx::task<char *> DeviceManager::FetchPairingFile(std::shared_ptr<Device> altDevice)
 {
 	return pplx::create_task([=] {
 		idevice_t device = NULL;
@@ -1618,7 +1618,14 @@ pplx::task<std::shared_ptr<plist_t>> DeviceManager::FetchPairingFile(std::shared
 
 		//get pairing record
 		userpref_read_pair_record(device->udid, &pair_record);
-		return std::make_shared<plist_t>(pair_record);
+		plist_dict_set_item(pair_record, "UDID", plist_new_string(altDevice->identifier().c_str()));
+
+		char* plistXML = nullptr;
+		uint32_t length = 0;
+		plist_to_xml(pair_record, &plistXML, &length);
+		odslog(plistXML);
+		return plistXML;
+		//return std::make_shared<plist_t>(pair_record);
 	});
 }
 
