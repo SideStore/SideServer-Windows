@@ -8,6 +8,7 @@
 
 #include "DeviceManager.hpp"
 
+extern "C" {
 #include <libimobiledevice/libimobiledevice.h>
 #include <libimobiledevice/lockdown.h>
 #include <libimobiledevice/installation_proxy.h>
@@ -15,7 +16,7 @@
 #include <libimobiledevice/afc.h>
 #include <libimobiledevice/misagent.h>
 #include <libimobiledevice/src/idevice.h>
-#include "common/userpref.h"
+}
 
 #include <filesystem>
 
@@ -1577,7 +1578,7 @@ pplx::task<std::shared_ptr<NotificationConnection>> DeviceManager::StartNotifica
 }
 
 
-/*pplx::task<std::shared_ptr<plist_t>> DeviceManager::FetchPairingFile(std::shared_ptr<Device> altDevice)
+pplx::task<std::shared_ptr<plist_t>> DeviceManager::FetchPairingFile(std::shared_ptr<Device> altDevice)
 {
 	return pplx::create_task([=] {
 		idevice_t device = NULL;
@@ -1615,12 +1616,12 @@ pplx::task<std::shared_ptr<NotificationConnection>> DeviceManager::StartNotifica
 			throw ServerError(ServerErrorCode::ConnectionFailed);
 		}
 
-		get pairing record
+		//get pairing record
 		userpref_read_pair_record(device->udid, &pair_record);
 		return std::make_shared<plist_t>(pair_record);
 	});
 }
-*/
+
 
 
 std::vector<std::shared_ptr<Device>> DeviceManager::connectedDevices() const

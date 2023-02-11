@@ -61,7 +61,7 @@ public:
 	pplx::task<std::vector<InstalledApp>> FetchInstalledApps(std::shared_ptr<Device> device);
 
 	/* SideStore */
-	//pplx::task<std::shared_ptr<plist_t>> FetchPairingFile(std::shared_ptr<Device> device);
+	pplx::task<std::shared_ptr<plist_t>> FetchPairingFile(std::shared_ptr<Device> device);
 
 
 	std::function<void(std::shared_ptr<Device>)> connectedDeviceCallback() const;
