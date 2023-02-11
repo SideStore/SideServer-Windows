@@ -6,17 +6,13 @@ Install the installer plugin that match your VS version from [here](https://mark
 1. clone the repository **recursively** and checkout the `error_handling` branch
 2. install and bootstrap [VCPKG](https://github.com/microsoft/vcpkg)
 3. In the `Dependencies\libimobiledevice-vs` folder, run the `./get-source` script to download the source repos
-4. In the project `imobiledevice`:
-    - Open the project properties page
-    - Navigate to `Configuration Properties > vcpkg`
-    - Turn on `Use Vcpkg Manifest`
-5. In `AltServer` and `AltSign`, change the toolset to `v143` (if using VS2022)
+4. In `AltServer` and `AltSign`, change the toolset to `v143` (if using VS2022)
 
 The code should now compile, but only in x86 for now.
 
 ### To Do
 
 - [ ] Fix x64 build??
-- [ ] Add pairing file support (commented out, some module error)
+- [x] Add pairing file support (commented out, some module error)
 - [ ] Rebrand AltServer to SideServer
 - [ ] Add beta build install option
