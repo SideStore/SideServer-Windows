@@ -270,6 +270,7 @@ BOOL CALLBACK TwoFactorDlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lP
 	}
 
 	case WM_COMMAND:
+  {
 		switch (HIWORD(wParam))
 		{
 		case EN_CHANGE:
@@ -311,11 +312,99 @@ BOOL CALLBACK TwoFactorDlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lP
 			EndDialog(hwnd, IDCANCEL);
 			break;
 		}
+    break;
+  }
 
 	default:
 		return FALSE;
 	}
-	return TRUE;
+  return FALSE;
+}
+
+BOOL CALLBACK ChooseTeamDlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
+{
+  HWND okButton = GetDlgItem(hwnd, IDOK);
+  HWND hwndList = GetDlgItem(hwnd, IDC_LIST_TEAM);
+  switch (Message)
+  {
+  case WM_INITDIALOG:
+  {
+    std::vector<std::shared_ptr<Team>>* teams = (std::vector<std::shared_ptr<Team>>*)lParam;
+    for (auto& team : *teams)
+    {
+      std::wstringstream item;
+      auto name = team->name();
+      auto identifier = team->identifier();
+      switch (team->type()) {
+      case Team::Type::Organization:
+      {
+        item << "Organization: ";
+        break;
+      }
+      case Team::Type::Free:
+      {
+        item << "Free: ";
+        break;
+      }
+      case Team::Type::Individual:
+      {
+        item << "Individual: ";
+        break;
+      }
+      default:
+      {
+        continue;
+      }
+      }
+      item << std::wstring(name.begin(), name.end()) << " - " << std::wstring(identifier.begin(), identifier.end());
+
+      int pos = (int)SendMessage(hwndList, LB_ADDSTRING, 0, (LPARAM)item.str().c_str());
+      // Set the array index of the player as item data.
+      // This enables us to retrieve the item from the array
+      // even after the items are sorted by the list box.
+      SendMessage(hwndList, LB_SETITEMDATA, pos, (LPARAM)&team);
+    }
+    SetFocus(hwndList);
+
+    PostMessage(hwnd, WM_NEXTDLGCTL, (WPARAM)okButton, TRUE);
+
+    return TRUE;
+  }
+
+  case WM_COMMAND:
+  {
+    switch (LOWORD(wParam))
+    {
+    case IDC_LIST_TEAM:
+    {
+      switch (HIWORD(wParam))
+      {
+      case LBN_SELCHANGE:
+      {
+        Button_Enable(okButton, true);
+        return TRUE;
+      }
+      }
+      return TRUE;
+    }
+
+    case IDOK:
+    {
+      int lbItem = (int)SendMessage(hwndList, LB_GETCURSEL, 0, 0);
+      auto team = SendMessage(hwndList, LB_GETITEMDATA, lbItem, 0);
+      EndDialog(hwnd, team);
+      return TRUE;
+    }
+    case IDCANCEL:
+      EndDialog(hwnd, IDCANCEL);
+      return TRUE;
+    }
+  }
+
+  default: break;
+  }
+
+  return FALSE;
 }
 
 VOID CALLBACK DetailedErrorMessageBoxCallback(LPHELPINFO lpHelpInfo)
@@ -999,25 +1088,14 @@ pplx::task<std::shared_ptr<Team>> AltServerApp::FetchTeam(std::shared_ptr<Accoun
     auto task = AppleAPI::getInstance()->FetchTeams(account, session)
     .then([](std::vector<std::shared_ptr<Team>> teams) {
 
-		for (auto& team : teams)
-		{
-			if (team->type() == Team::Type::Individual)
-			{
-				return team;
-			}
-		}
-
-		for (auto& team : teams)
-		{
-			if (team->type() == Team::Type::Free)
-			{
-				return team;
-			}
-		}
-
-		for (auto& team : teams)
-		{
-			return team;
+    if (teams.size() == 1 && teams.front()->type() != Team::Unknown) {
+      return teams.front();
+    }
+    int result = DialogBoxParam(NULL, MAKEINTRESOURCE(IDD_CHOOSE_TEAM), 0, ChooseTeamDlgProc, (LPARAM)&teams);
+    if (result != IDCANCEL)
+    {
+      auto team = (std::shared_ptr<Team>*)result;
+      return *team;
 		}
 
 		throw InstallError(InstallErrorCode::NoTeam);
