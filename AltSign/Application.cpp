@@ -315,8 +315,8 @@ std::map<std::string, plist_t> Application::entitlements()
 	return _entitlements;
 }
 
-bool Application::isAltStoreApp() const
+bool Application::isSideStoreApp() const
 {
-	auto isAltStoreApp = this->bundleIdentifier().find("com.SideStore.SideStore") != std::string::npos;
-	return isAltStoreApp;
+	auto isSideStoreApp = this->bundleIdentifier().find("com.SideStore.SideStore") != std::string::npos;
+	return isSideStoreApp;
 }

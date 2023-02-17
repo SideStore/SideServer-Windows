@@ -1,6 +1,6 @@
 //
 //  Semaphore.hpp
-//  AltServer-Windows
+//  SideServer-Windows
 //
 //  Created by Riley Testut on 10/7/20.
 //  Copied from https://stackoverflow.com/a/19659736

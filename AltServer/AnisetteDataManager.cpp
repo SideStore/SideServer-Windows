@@ -10,7 +10,7 @@
 #include <set>
 
 #include "AnisetteData.h"
-#include "AltServerApp.h"
+#include "SideServerApp.h"
 
 //#define SPOOF_MAC 1
 
@@ -87,7 +87,7 @@ id __cdecl ALTDeviceIDReplacementFunction()
 	ObjcObject* NSString = (ObjcObject*)objc_getClass("NSString");
 	id stringInit = sel_registerName("stringWithUTF8String:");
 
-	auto deviceIDString = AltServerApp::instance()->serverID();
+	auto deviceIDString = SideServerApp::instance()->serverID();
 
 	ObjcObject* deviceID = (ObjcObject*)((id(*)(id, SEL, const char*))objc_msgSend)(NSString, stringInit, deviceIDString.c_str());
 
@@ -270,13 +270,13 @@ bool AnisetteDataManager::LoadiCloudDependencies()
 
 bool AnisetteDataManager::LoadDependencies()
 {
-	fs::path appleFolderPath(AltServerApp::instance()->appleFolderPath());
+	fs::path appleFolderPath(SideServerApp::instance()->appleFolderPath());
 	if (!fs::exists(appleFolderPath))
 	{
 		throw AnisetteError(AnisetteErrorCode::iTunesNotInstalled);
 	}
 
-	fs::path internetServicesDirectoryPath(AltServerApp::instance()->internetServicesFolderPath());
+	fs::path internetServicesDirectoryPath(SideServerApp::instance()->internetServicesFolderPath());
 	if (!fs::exists(internetServicesDirectoryPath))
 	{
 		throw AnisetteError(AnisetteErrorCode::iCloudNotInstalled);
@@ -290,7 +290,7 @@ bool AnisetteDataManager::LoadDependencies()
 		throw AnisetteError(AnisetteErrorCode::MissingAOSKit);
 	}
 
-	fs::path applicationSupportDirectoryPath(AltServerApp::instance()->applicationSupportFolderPath());
+	fs::path applicationSupportDirectoryPath(SideServerApp::instance()->applicationSupportFolderPath());
 	if (!fs::exists(applicationSupportDirectoryPath))
 	{
 		throw AnisetteError(AnisetteErrorCode::MissingApplicationSupportFolder);
@@ -472,10 +472,10 @@ bool AnisetteDataManager::ReprovisionDevice(std::function<void(void)> provisionC
 		}
 	}
 
-	// Copy existing AltServer .pb files into original location to reuse the MID.
+	// Copy existing SideServer .pb files into original location to reuse the MID.
 	for (const auto& entry : fs::directory_iterator(adiDirectoryPath))
 	{
-		if (entry.path().extension() == ".altserver")
+		if (entry.path().extension() == ".sideserver")
 		{
 			fs::path path = entry.path();
 			path.replace_extension();
@@ -487,14 +487,14 @@ bool AnisetteDataManager::ReprovisionDevice(std::function<void(void)> provisionC
 	auto cleanUp = [adiDirectoryPath]() {
 		/* Finish Provisioning */
 
-		// Backup AltServer ADI files.
+		// Backup SideServer ADI files.
 		for (const auto& entry : fs::directory_iterator(adiDirectoryPath))
 		{
-			// Backup AltStore file
+			// Backup SideStore file
 			if (entry.path().extension() == ".pb")
 			{
 				fs::path backupPath = entry.path();
-				backupPath += ".altserver";
+				backupPath += ".sideserver";
 
 				fs::rename(entry.path(), backupPath);
 			}
@@ -541,9 +541,9 @@ bool AnisetteDataManager::ReprovisionDevice(std::function<void(void)> provisionC
 
 		odslog("Reprovisioned Anisette:" << anisetteDictionary->description());
 
-		AltServerApp::instance()->setReprovisionedDevice(true);
+		SideServerApp::instance()->setReprovisionedDevice(true);
 
-		// Call callback while machine is provisioned for AltServer.
+		// Call callback while machine is provisioned for SideServer.
 		provisionCallback();
 	}
 	catch (std::exception &exception)
@@ -563,10 +563,10 @@ bool AnisetteDataManager::ResetProvisioning()
 {
 	std::string adiDirectoryPath = "C:\\ProgramData\\Apple Computer\\iTunes\\adi";
 
-	// Remove existing AltServer .pb files so we can create new ones next time we provision this device.
+	// Remove existing SideServer .pb files so we can create new ones next time we provision this device.
 	for (const auto& entry : fs::directory_iterator(adiDirectoryPath))
 	{
-		if (entry.path().extension() == ".altserver")
+		if (entry.path().extension() == ".sideserver")
 		{
 			fs::remove(entry.path());
 		}

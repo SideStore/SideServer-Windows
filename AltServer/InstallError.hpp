@@ -1,6 +1,6 @@
 //
 //  InstallError.h
-//  AltServer-Windows
+//  SideServer-Windows
 //
 //  Created by Riley Testut on 8/31/19.
 //  Copyright © 2019 Riley Testut. All rights reserved.
@@ -29,7 +29,7 @@ public:
     
     virtual std::string domain() const
     {
-        return "AltServer.OperationError";
+        return "SideServer.OperationError";
     }
     
     virtual std::optional<std::string> localizedFailureReason() const

@@ -1,9 +1,9 @@
-//
+﻿//
 //  ConnectionError.hpp
-//  AltServer-Windows
+//  SideServer-Windows
 //
 //  Created by Riley Testut on 6/19/21.
-//  Copyright � 2021 Riley Testut. All rights reserved.
+//  Copyright © 2021 Riley Testut. All rights reserved.
 //
 
 #ifndef ConnectionError_h
@@ -82,11 +82,11 @@ public:
 			break;
 
 		case ConnectionErrorCode::InvalidRequest:
-			ss << deviceName << " received an invalid request from AltServer.";
+			ss << deviceName << " received an invalid request from SideServer.";
 			break;
 
 		case ConnectionErrorCode::InvalidResponse:
-			ss << "AltServer received an invalid response from " << deviceName << ".";
+			ss << "SideServer received an invalid response from " << deviceName << ".";
 			break;
 
 		case ConnectionErrorCode::Usbmuxd:
@@ -94,11 +94,11 @@ public:
 			break;
 
 		case ConnectionErrorCode::SSL:
-			ss << "AltServer could not establish a secure connection to " << deviceName << ".";
+			ss << "SideServer could not establish a secure connection to " << deviceName << ".";
 			break;
 
 		case ConnectionErrorCode::TimedOut:
-			ss << "AltServer's connection to " << deviceName << " timed out.";
+			ss << "SideServer's connection to " << deviceName << " timed out.";
 			break;
 
 		}
@@ -184,7 +184,7 @@ public:
 		case INSTPROXY_E_PLIST_ERROR: return ConnectionError(ConnectionErrorCode::InvalidResponse, userInfo);
 		case INSTPROXY_E_CONN_FAILED: return ConnectionError(ConnectionErrorCode::Usbmuxd, userInfo);
 		case INSTPROXY_E_RECEIVE_TIMEOUT: return ConnectionError(ConnectionErrorCode::TimedOut, userInfo);
-//      case INSTPROXY_E_DEVICE_OS_VERSION_TOO_LOW: return ConnectionError(ConnectionErrorCode::Unknown, userInfo); // Error message assumes we're installing AltStore
+//      case INSTPROXY_E_DEVICE_OS_VERSION_TOO_LOW: return ConnectionError(ConnectionErrorCode::Unknown, userInfo); // Error message assumes we're installing SideStore
 		default: return ConnectionError(ConnectionErrorCode::Unknown, userInfo);
 		}
 	}

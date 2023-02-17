@@ -248,7 +248,7 @@ public:
     
     virtual std::string domain() const
     {
-        return "AltStore.AppleDeveloperError";
+        return "SideStore.AppleDeveloperError";
     }
     
     virtual std::optional<std::string> localizedFailureReason() const
@@ -444,7 +444,7 @@ public:
 class ExceptionError : public LocalizedError
 {
 public:
-    virtual std::string domain() const { return "AltServer.ExceptionError"; }
+    virtual std::string domain() const { return "SideServer.ExceptionError"; }
 
     ExceptionError(std::exception& exception) : LocalizedError(0, exception.what())
     {

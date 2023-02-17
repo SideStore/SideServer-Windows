@@ -1,6 +1,6 @@
 //
 //  DeviceManager.cpp
-//  AltServer-Windows
+//  SideServer-Windows
 //
 //  Created by Riley Testut on 8/13/19.
 //  Copyright © 2019 Riley Testut. All rights reserved.
@@ -237,7 +237,7 @@ pplx::task<void> DeviceManager::InstallApp(std::string appFilepath, std::string 
 			}
 
 			/* Connect to Device */
-			if (lockdownd_client_new_with_handshake(device, &client, "altserver") != LOCKDOWN_E_SUCCESS)
+			if (lockdownd_client_new_with_handshake(device, &client, "sideserver") != LOCKDOWN_E_SUCCESS)
 			{
 				throw ServerError(ServerErrorCode::ConnectionFailed);
 			}
@@ -614,7 +614,7 @@ pplx::task<void> DeviceManager::RemoveApp(std::string bundleIdentifier, std::str
 			}
 
 			/* Connect to Device */
-			if (lockdownd_client_new_with_handshake(device, &client, "altserver") != LOCKDOWN_E_SUCCESS)
+			if (lockdownd_client_new_with_handshake(device, &client, "sideserver") != LOCKDOWN_E_SUCCESS)
 			{
 				throw ServerError(ServerErrorCode::ConnectionFailed);
 			}
@@ -768,7 +768,7 @@ pplx::task<void> DeviceManager::InstallProvisioningProfiles(std::vector<std::sha
 			}
 
 			/* Connect to Device */
-			if (lockdownd_client_new_with_handshake(device, &client, "altserver") != LOCKDOWN_E_SUCCESS)
+			if (lockdownd_client_new_with_handshake(device, &client, "sideserver") != LOCKDOWN_E_SUCCESS)
 			{
 				throw ServerError(ServerErrorCode::ConnectionFailed);
 			}
@@ -870,7 +870,7 @@ pplx::task<void> DeviceManager::RemoveProvisioningProfiles(std::set<std::string>
 			}
 
 			/* Connect to Device */
-			if (lockdownd_client_new_with_handshake(device, &client, "altserver") != LOCKDOWN_E_SUCCESS)
+			if (lockdownd_client_new_with_handshake(device, &client, "sideserver") != LOCKDOWN_E_SUCCESS)
 			{
 				throw ServerError(ServerErrorCode::ConnectionFailed);
 			}
@@ -1138,7 +1138,7 @@ pplx::task<bool> DeviceManager::IsDeveloperDiskImageMounted(std::shared_ptr<Devi
 			if (mim) {
 				if (device != NULL && device->conn_type == CONNECTION_USBMUXD)
 				{
-					// For some reason, calling this method over WiFi may freeze AltServer.
+					// For some reason, calling this method over WiFi may freeze SideServer.
 					// Nothing bad *seems* to happen if we don't call it though, so just limit it to wired connections.
 					mobile_image_mounter_hangup(mim);
 				}
@@ -1172,7 +1172,7 @@ pplx::task<bool> DeviceManager::IsDeveloperDiskImageMounted(std::shared_ptr<Devi
 			}
 
 			/* Connect to Device */
-			if (lockdownd_client_new_with_handshake(device, &client, "altserver") != LOCKDOWN_E_SUCCESS)
+			if (lockdownd_client_new_with_handshake(device, &client, "sideserver") != LOCKDOWN_E_SUCCESS)
 			{
 				throw ServerError(ServerErrorCode::ConnectionFailed);
 			}
@@ -1262,7 +1262,7 @@ pplx::task<void> DeviceManager::InstallDeveloperDiskImage(std::string diskPath, 
 			if (mim) {
 				if (device != NULL && device->conn_type == CONNECTION_USBMUXD)
 				{
-					// For some reason, calling this method over WiFi may freeze AltServer.
+					// For some reason, calling this method over WiFi may freeze SideServer.
 					// Nothing bad *seems* to happen if we don't call it though, so just limit it to wired connections.
 					mobile_image_mounter_hangup(mim);
 				}
@@ -1296,7 +1296,7 @@ pplx::task<void> DeviceManager::InstallDeveloperDiskImage(std::string diskPath, 
 			}
 
 			/* Connect to Device */
-			if (lockdownd_client_new_with_handshake(device, &client, "altserver") != LOCKDOWN_E_SUCCESS)
+			if (lockdownd_client_new_with_handshake(device, &client, "sideserver") != LOCKDOWN_E_SUCCESS)
 			{
 				throw ServerError(ServerErrorCode::ConnectionFailed);
 			}
@@ -1467,7 +1467,7 @@ pplx::task<std::vector<InstalledApp>> DeviceManager::FetchInstalledApps(std::sha
 		}
 
 		/* Connect to Device */
-		if (lockdownd_client_new_with_handshake(device, &client, "AltServer") != LOCKDOWN_E_SUCCESS)
+		if (lockdownd_client_new_with_handshake(device, &client, "SideServer") != LOCKDOWN_E_SUCCESS)
 		{
 			throw ServerError(ServerErrorCode::ConnectionFailed);
 		}
@@ -1543,7 +1543,7 @@ pplx::task<std::shared_ptr<NotificationConnection>> DeviceManager::StartNotifica
 		}
 
 		/* Connect to Device */
-		if (lockdownd_client_new_with_handshake(device, &lockdownClient, "altserver") != LOCKDOWN_E_SUCCESS)
+		if (lockdownd_client_new_with_handshake(device, &lockdownClient, "sideserver") != LOCKDOWN_E_SUCCESS)
 		{
 			idevice_free(device);
 			throw ServerError(ServerErrorCode::ConnectionFailed);
@@ -1611,7 +1611,7 @@ pplx::task<char *> DeviceManager::FetchPairingFile(std::shared_ptr<Device> altDe
 		}
 
 		// Connect to Device 
-		if (lockdownd_client_new_with_handshake(device, &client, "AltServer") != LOCKDOWN_E_SUCCESS)
+		if (lockdownd_client_new_with_handshake(device, &client, "SideServer") != LOCKDOWN_E_SUCCESS)
 		{
 			throw ServerError(ServerErrorCode::ConnectionFailed);
 		}
@@ -1715,7 +1715,7 @@ std::vector<std::shared_ptr<Device>> DeviceManager::availableDevices(bool includ
             continue;
         }
 
-        int result = lockdownd_client_new(device, &client, "altserver");
+        int result = lockdownd_client_new(device, &client, "sideserver");
         if (result != LOCKDOWN_E_SUCCESS)
         {
             fprintf(stderr, "ERROR: Connecting to device %s failed! (%d)\n", udid, result);

@@ -46,7 +46,7 @@ public:
 
 	std::map<std::string, plist_t> entitlements();
 
-	bool isAltStoreApp() const;
+	bool isSideStoreApp() const;
     
     friend std::ostream& operator<<(std::ostream& os, const Application& app);
     

@@ -1,3 +1,3 @@
 #include "ConnectionError.hpp"
 
-std::string ConnectionErrorDomain = "AltServer.ConnectionError";
+std::string ConnectionErrorDomain = "SideServer.ConnectionError";

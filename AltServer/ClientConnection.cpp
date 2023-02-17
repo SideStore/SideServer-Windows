@@ -10,7 +10,7 @@
 #include "DeviceManager.hpp"
 #include "AnisetteDataManager.h"
 #include "AnisetteData.h"
-#include "AltServerApp.h"
+#include "SideServerApp.h"
 
 #include "ServerError.hpp"
 #include "ConnectionError.hpp"
@@ -386,7 +386,7 @@ pplx::task<void> ClientConnection::ProcessEnableUnsignedCodeExecutionRequest(web
             throw ServerError(ServerErrorCode::DeviceNotFound);
         }
 
-        return AltServerApp::instance()->PrepareDevice(device)
+        return SideServerApp::instance()->PrepareDevice(device)
         .then([request, device](void) {
             return DeviceManager::instance()->StartDebugConnection(device);
         })

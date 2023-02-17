@@ -56,7 +56,7 @@ pplx::task<void> DebugConnection::Connect()
             }
 
             /* Connect to debugserver */
-            debugserver_error_t error = debugserver_client_start_service(device, &_client, "AltServer");
+            debugserver_error_t error = debugserver_client_start_service(device, &_client, "SideServer");
             if (error != DEBUGSERVER_E_SUCCESS)
             {
                 auto err = ConnectionError::errorForDebugServerError(error, this->device());

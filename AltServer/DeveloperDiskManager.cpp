@@ -1,13 +1,13 @@
-//
+﻿//
 //  DeveloperDiskManager.cpp
-//  AltServer-Windows
+//  SideServer-Windows
 //
 //  Created by Riley Testut on 7/1/21.
-//  Copyright � 2021 Riley Testut. All rights reserved.
+//  Copyright ©2021 Riley Testut. All rights reserved.
 //
 
 #include "DeveloperDiskManager.h"
-#include "AltServerApp.h"
+#include "SideServerApp.h"
 
 #include "Archiver.hpp"
 
@@ -34,7 +34,7 @@ DeveloperDiskManager::DeveloperDiskManager() :
 #if STAGING
 	_client(U("https://f000.backblazeb2.com"))
 #else
-	_client(U("https://cdn.altstore.io"))
+	_client(U("https://cdn.sidestore.io"))
 #endif
 {
 }
@@ -56,7 +56,7 @@ pplx::task<std::pair<std::string, std::string>> DeveloperDiskManager::DownloadDe
 		OperatingSystemVersion osVersion = device->osVersion();
 		osVersion.patchVersion = 0; // Patch is irrelevant for developer disks
 
-		fs::path developerDiskOSPath = AltServerApp::instance()->developerDisksDirectoryPath();
+		fs::path developerDiskOSPath = SideServerApp::instance()->developerDisksDirectoryPath();
 		developerDiskOSPath.append(*osName);
 		fs::create_directory(developerDiskOSPath);
 
@@ -150,7 +150,7 @@ bool DeveloperDiskManager::IsDeveloperDiskCompatible(std::shared_ptr<Device> dev
 		return false;
 	}
 
-	bool compatible = AltServerApp::instance()->boolValueForRegistryKey(*id);
+	bool compatible = SideServerApp::instance()->boolValueForRegistryKey(*id);
 	return compatible;
 }
 
@@ -162,15 +162,15 @@ void DeveloperDiskManager::SetDeveloperDiskCompatible(bool compatible, std::shar
 		return;
 	}
 
-	AltServerApp::instance()->setBoolValueForRegistryKey(compatible, *id);
+	SideServerApp::instance()->setBoolValueForRegistryKey(compatible, *id);
 }
 
 pplx::task<web::json::value> DeveloperDiskManager::FetchDeveloperDiskURLs()
 {
 #if STAGING
-	auto encodedURI = web::uri::encode_uri(L"/file/altstore-staging/altserver/developerdisks.json");
+	auto encodedURI = web::uri::encode_uri(L"/file/sidestore-staging/sideserver/developerdisks.json");
 #else
-	auto encodedURI = web::uri::encode_uri(L"/file/altstore/altserver/developerdisks.json");
+	auto encodedURI = web::uri::encode_uri(L"/file/sidestore/sideserver/developerdisks.json");
 #endif
 	uri_builder builder(encodedURI);
 

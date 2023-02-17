@@ -27,7 +27,7 @@ public:
 
 	virtual std::string domain() const
 	{
-		return "AltServer.AppleProgramError";
+		return "SideServer.AppleProgramError";
 	}
 
 	virtual std::optional<std::string> localizedFailureReason() const

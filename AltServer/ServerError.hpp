@@ -1,6 +1,6 @@
 //
 //  ServerError.hpp
-//  AltServer-Windows
+//  SideServer-Windows
 //
 //  Created by Riley Testut on 8/13/19.
 //  Copyright © 2019 Riley Testut. All rights reserved.
@@ -65,13 +65,13 @@ public:
     
     virtual std::string domain() const
     {
-        return "AltServer.ServerError";
+        return "SideServer.ServerError";
     }
 
 	virtual int displayCode() const
 	{
 		// We want ServerError codes to start at 2000,
-		// but we can't change them without breaking AltServer compatibility.
+		// but we can't change them without breaking SideServer compatibility.
 		// Instead, we just add 2000 when displaying code to user
 		// to make it appear as if codes start at 2000 normally.
 		int displayCode = 2000 + this->code();
@@ -127,13 +127,13 @@ public:
 		}
 
 		case ServerErrorCode::LostConnection:
-			return "The connection to AltServer was lost.";
+			return "The connection to SideServer was lost.";
 
 		case ServerErrorCode::DeviceNotFound:
-			return "AltServer could not find the device.";
+			return "SideServer could not find the device.";
 
 		case ServerErrorCode::DeviceWriteFailed:
-			return "AltServer could not write app data to the device.";
+			return "SideServer could not write app data to the device.";
 
 		case ServerErrorCode::InvalidRequest:
 		{
@@ -146,7 +146,7 @@ public:
 				}
 			}
 
-			return "AltServer received an invalid request.";
+			return "SideServer received an invalid request.";
 		}
 
 		case ServerErrorCode::InvalidResponse:
@@ -160,7 +160,7 @@ public:
 				}
 			}
 
-			return "AltServer sent an invalid response.";
+			return "SideServer sent an invalid response.";
 		}
 
 		case ServerErrorCode::InvalidApp:
@@ -192,7 +192,7 @@ public:
 			auto osVersion = this->osVersion();
 			if (!osVersion.has_value())
 			{
-				return "Your device must be running iOS 12.2 or later to install AltStore.";
+				return "Your device must be running iOS 12.2 or later to install SideStore.";
 			}
 
 			std::string appName = this->userInfo().count(AppNameErrorKey) > 0 ? AnyStringValue(this->userInfo()[AppNameErrorKey]) : "The app";
@@ -202,16 +202,16 @@ public:
 		}
 
 		case ServerErrorCode::UnknownRequest:
-			return "AltServer does not support this request.";
+			return "SideServer does not support this request.";
 
 		case ServerErrorCode::UnknownResponse:
-			return "AltStore received an unknown response from AltServer.";
+			return "SideStore received an unknown response from SideServer.";
 
 		case ServerErrorCode::InvalidAnisetteData:
 			return "The provided anisette data is invalid.";
 
 		case ServerErrorCode::PluginNotFound:
-			return "AltServer could not connect to Mail plug-in.";
+			return "SideServer could not connect to Mail plug-in.";
 
 		case ServerErrorCode::ProfileNotFound:
 			return "The provisioning profile could not be found.";
@@ -278,7 +278,7 @@ public:
             return "Make sure you have trusted this device with your computer and WiFi sync is enabled.";
 
         case ServerErrorCode::MaximumFreeAppLimitReached:
-            return "Please deactivate a sideloaded app with AltStore in order to install another app. If you're running iOS 13.5 or later, make sure 'Offload Unused Apps' is disabled in Settings > iTunes & App Stores, then install or delete all offloaded apps to prevent them from erroneously counting towards this limit.";
+            return "Please deactivate a sideloaded app with SideStore in order to install another app. If you're running iOS 13.5 or later, make sure 'Offload Unused Apps' is disabled in Settings > iTunes & App Stores, then install or delete all offloaded apps to prevent them from erroneously counting towards this limit.";
 
         case ServerErrorCode::InvalidAnisetteData:
             return "Please download the latest versions of iTunes and iCloud directly from Apple, and not from the Microsoft Store.";

@@ -1,6 +1,6 @@
 //
 //  ConnectionManager.cpp
-//  AltServer-Windows
+//  SideServer-Windows
 //
 //  Created by Riley Testut on 8/13/19.
 //  Copyright © 2019 Riley Testut. All rights reserved.
@@ -26,7 +26,7 @@
 
 #include "dns_sd.h"
 
-#include "AltServerApp.h"
+#include "SideServerApp.h"
 #include "WirelessConnection.h"
 #include "DeviceManager.hpp"
 #include "Error.hpp"
@@ -35,9 +35,9 @@
 #include <thread>
 #include <chrono>
 
-#define WIRED_SERVER_CONNECTION_AVAILABLE_REQUEST "io.altstore.Request.WiredServerConnectionAvailable"
-#define WIRED_SERVER_CONNECTION_AVAILABLE_RESPONSE "io.altstore.Response.WiredServerConnectionAvailable"
-#define WIRED_SERVER_CONNECTION_START_REQUEST "io.altstore.Request.WiredServerConnectionStart"
+#define WIRED_SERVER_CONNECTION_AVAILABLE_REQUEST "io.sidestore.Request.WiredServerConnectionAvailable"
+#define WIRED_SERVER_CONNECTION_AVAILABLE_RESPONSE "io.sidestore.Response.WiredServerConnectionAvailable"
+#define WIRED_SERVER_CONNECTION_START_REQUEST "io.sidestore.Request.WiredServerConnectionStart"
 
 #define odslog(msg) { std::wstringstream ss; ss << msg << std::endl; OutputDebugStringW(ss.str().c_str()); }
 
@@ -105,7 +105,7 @@ void ConnectionManager::StartAdvertising(int socketPort)
 	DNSServiceRef service = NULL;
 	uint16_t port = htons(socketPort);
 
-	auto serverID = AltServerApp::instance()->serverID();
+	auto serverID = SideServerApp::instance()->serverID();
 
 	std::string txtValue("serverID=" + serverID);
 	char size = txtValue.size();
@@ -119,7 +119,7 @@ void ConnectionManager::StartAdvertising(int socketPort)
 		txtData.push_back(byte);
 	}
 
-	DNSServiceErrorType registrationResult = DNSServiceRegister(&service, 0, 0, NULL, "_altserver._tcp", NULL, NULL, port, txtData.size(), txtData.data(), ConnectionManagerBonjourRegistrationFinished, NULL);
+	DNSServiceErrorType registrationResult = DNSServiceRegister(&service, 0, 0, NULL, "_sideserver._tcp", NULL, NULL, port, txtData.size(), txtData.data(), ConnectionManagerBonjourRegistrationFinished, NULL);
 	if (registrationResult != kDNSServiceErr_NoError)
 	{
 		std::cout << "Bonjour Registration Error: " << registrationResult << std::endl;

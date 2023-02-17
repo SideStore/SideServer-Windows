@@ -1,9 +1,9 @@
-//
+﻿//
 //  DeveloperDiskManager.hpp
-//  AltServer-Windows
+//  SideServer-Windows
 //
 //  Created by Riley Testut on 7/1/21.
-//  Copyright � 2021 Riley Testut. All rights reserved.
+//  Copyright ©2021 Riley Testut. All rights reserved.
 //
 
 #pragma once
@@ -34,7 +34,7 @@ public:
 
 	virtual std::string domain() const
 	{
-		return "AltServer.DeveloperDiskError";
+		return "SideServer.DeveloperDiskError";
 	}
 
 	virtual std::optional<std::string> localizedFailureReason() const
