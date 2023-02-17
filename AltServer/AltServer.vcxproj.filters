@@ -15,13 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AltServer.cpp">
+    <ClCompile Include="SideServer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DeviceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AltServerApp.cpp">
+    <ClCompile Include="SideSeverApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ConnectionManager.cpp">
@@ -68,7 +68,7 @@
     <ClInclude Include="ServerError.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AltServerApp.h">
+    <ClInclude Include="SideServerApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ConnectionManager.hpp">
