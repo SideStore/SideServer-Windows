@@ -190,7 +190,7 @@ void observe_all_exceptions(InIt first, InIt last)
 		});
 }
 
-BOOL CALLBACK InstallDlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK InstallDlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 {
 	switch (Message)
 	{
@@ -242,7 +242,7 @@ BOOL CALLBACK InstallDlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lPar
 	return FALSE;
 }
 
-BOOL CALLBACK TwoFactorDlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK TwoFactorDlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 {
 	HWND verificationCodeTextField = GetDlgItem(hwnd, IDC_EDIT1);
 	HWND submitButton = GetDlgItem(hwnd, IDOK);
@@ -321,7 +321,7 @@ BOOL CALLBACK TwoFactorDlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lP
   return FALSE;
 }
 
-BOOL CALLBACK ChooseTeamDlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK ChooseTeamDlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 {
   HWND okButton = GetDlgItem(hwnd, IDOK);
   HWND hwndList = GetDlgItem(hwnd, IDC_LIST_TEAM);
