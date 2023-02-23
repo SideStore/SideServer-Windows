@@ -30,7 +30,7 @@ jobs:
       run: vcpkg integrate install
    
     - name: Run get-source in Libimobiledevice-vs
-      run: Dependencies\libimobiledevice-vs\get-source.cmd
+      run: cd .. ; ./Dependencies/libimobiledevice-vs/get-source.cmd;
 
     - name: Build
       working-directory: ${{env.GITHUB_WORKSPACE}}
