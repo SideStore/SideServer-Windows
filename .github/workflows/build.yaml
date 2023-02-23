@@ -2,7 +2,7 @@ name: MSBuild
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: [ "develop", "Altserver-windows-actions" ]
   pull_request:
     branches: [ "develop" ]
 
