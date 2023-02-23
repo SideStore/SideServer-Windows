@@ -26,14 +26,14 @@ jobs:
       run: git submodule update --force --recursive --init --remote
 
     - name: Add MSBuild
-      uses: microsoft/setup-msbuild@v1.0.2
+      uses: microsoft/setup-msbuild@v1.0.2 
+   
+    - name: Run get-source in Libimobiledevice-vs
+      run: Dependencies/libimobiledevice-vs/get-source.cmd
 
     - name: Intergrate vcpkg packages
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: vcpkg integrate install
-   
-    - name: Run get-source in Libimobiledevice-vs
-      run: Dependencies/libimobiledevice-vs/get-source.cmd
 
     - name: Build
       working-directory: ${{env.GITHUB_WORKSPACE}}
