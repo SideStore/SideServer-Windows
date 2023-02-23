@@ -9,7 +9,7 @@ on:
 env:
   # https://docs.github.com/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
   PROJECT_FILE_PATH: AltServer/AltServer.vcxproj
-  BUILD_PLATFORM: x64
+  BUILD_PLATFORM: x86
   BUILD_CONFIGURATION: Release
 
 permissions:
