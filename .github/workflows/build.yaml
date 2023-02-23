@@ -21,12 +21,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-      with:
-        repository: microsoft/vcpkg
-        path: vcpkg
 
     - name: Checkout submodules
       run: git submodule update --force --recursive --init --remote
+
+      with:
+        repository: microsoft/vcpkg
+        path: vcpkg
 
     - name: Add MSBuild
       uses: microsoft/setup-msbuild@v1.0.2 
