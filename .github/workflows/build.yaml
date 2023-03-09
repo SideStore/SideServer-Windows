@@ -32,7 +32,7 @@ jobs:
       run: cd Dependencies/libimobiledevice-vs; ./get-source.cmd
 
     - name: Cache vcpkg dir
-      id: cache-rust-cargo
+      id: cache-vcpkg-dir
       uses: actions/cache@v3
       env:
         cache-name: cache-vcpkg-dir
