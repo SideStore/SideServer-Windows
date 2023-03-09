@@ -44,13 +44,13 @@ jobs:
           ${{ runner.os }}-build-
           ${{ runner.os }}-
 
-    - name: Intergrate vcpkg packages
-      working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: cd "c:\vcpkg"; ./bootstrap-vcpkg.bat; vcpkg install --feature-flags=manifests,binarycaching,default-features,websockets --recurse openssl boost-regex:x64-windows dirent mdnsresponder winsparkle; vcpkg integrate install
+    #- name: Intergrate vcpkg packages
+    #  working-directory: ${{env.GITHUB_WORKSPACE}}
+    #  run: cd "c:\vcpkg"; ./bootstrap-vcpkg.bat; vcpkg install --feature-flags=manifests,binarycaching,default-features,websockets --recurse openssl boost-regex:x64-windows dirent mdnsresponder winsparkle; vcpkg integrate install
 
     - name: Build
       working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} ${{env.PROJECT_FILE_PATH}}
+      run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} ${{env.PROJECT_FILE_PATH}} /p:VcpkgEnableManifest=true
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v3.1.0
