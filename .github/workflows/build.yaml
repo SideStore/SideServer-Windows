@@ -46,7 +46,7 @@ jobs:
 
     - name: Intergrate vcpkg packages
       working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: cd "c:\vcpkg"; ./bootstrap-vcpkg.bat; vcpkg install --feature-flags=manifests,binarycaching,default-features,websockets --recurse openssl boost-regex:x64-windows dirent mdnsresponder winsparkle; vcpkg integrate install
+      run: cd "c:\vcpkg"; ./bootstrap-vcpkg.bat; vcpkg install --feature-flags=manifests,binarycaching,default-features,websockets --recurse openssl boost-regex:x64-windows dirent mdnsresponder winsparkle libusb:x64-windows libusb-win32:x64-windows; vcpkg integrate install
 
     - name: Build
       working-directory: ${{env.GITHUB_WORKSPACE}}
