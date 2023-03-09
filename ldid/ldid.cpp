@@ -51,7 +51,7 @@
 #include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
-#include <regex.h>
+#include <tre/regex.h>
 #include <stdbool.h>
 #include <stdint.h>
 //#include <unistd.h>

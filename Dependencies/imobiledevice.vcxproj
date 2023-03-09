@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0"
-  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -56,9 +55,7 @@
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
   <ImportGroup Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"
-      Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')"
-      Label="LocalAppDataPlatform" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
@@ -71,10 +68,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <PreprocessorDefinitions>
-        WIN32;HAVE_OPENSSL;_MBCS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>
-        $(ProjectDir)\libimobiledevice-vs\libplist\include\;$(ProjectDir)\libimobiledevice-vs\libusbmuxd\include\;libimobiledevice-vs\libimobiledevice\;libimobiledevice-vs\libimobiledevice\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\libimobiledevice-vs\libplist\include\;$(ProjectDir)\libimobiledevice-vs\libusbmuxd\include\;libimobiledevice-vs\libimobiledevice\;libimobiledevice-vs\libimobiledevice\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>
@@ -88,6 +82,7 @@
       <SDLCheck>true</SDLCheck>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PreprocessorDefinitions>_DEBUG;WIN32;HAVE_OPENSSL;_MBCS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -100,6 +95,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <PreprocessorDefinitions>_DEBUG;WIN32;HAVE_OPENSSL;_MBCS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -114,6 +111,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <PreprocessorDefinitions>NDEBUG;WIN32;HAVE_OPENSSL;_MBCS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -130,6 +129,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <PreprocessorDefinitions>NDEBUG;WIN32;HAVE_OPENSSL;_MBCS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -147,52 +148,29 @@
     <ClInclude Include="libimobiledevice-vs\libimobiledevice\common\utils.h" />
     <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\asprintf.h" />
     <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\endianness.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\afc.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\debugserver.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\diagnostics_relay.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\file_relay.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\heartbeat.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\house_arrest.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\installation_proxy.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\libimobiledevice.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\lockdown.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\misagent.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\mobileactivation.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\mobilebackup.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\mobilebackup2.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\mobilesync.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\mobile_image_mounter.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\notification_proxy.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\property_list_service.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\restore.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\sbservices.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\screenshotr.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\service.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\syslog_relay.h" />
-    <ClInclude
-      Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\webinspector.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\afc.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\debugserver.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\diagnostics_relay.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\file_relay.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\heartbeat.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\house_arrest.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\installation_proxy.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\libimobiledevice.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\lockdown.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\misagent.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\mobileactivation.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\mobilebackup.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\mobilebackup2.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\mobilesync.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\mobile_image_mounter.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\notification_proxy.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\property_list_service.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\restore.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\sbservices.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\screenshotr.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\service.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\syslog_relay.h" />
+    <ClInclude Include="libimobiledevice-vs\libimobiledevice\include\libimobiledevice-vs\libimobiledevice\webinspector.h" />
     <ClInclude Include="libimobiledevice-vs\libimobiledevice\resource.h" />
     <ClInclude Include="libimobiledevice-vs\libimobiledevice\src\afc.h" />
     <ClInclude Include="libimobiledevice-vs\libimobiledevice\src\debugserver.h" />

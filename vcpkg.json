@@ -10,6 +10,7 @@
         "websockets"
       ]
     },
+    "tre",
     "dirent",
     "mdnsresponder",
     "openssl",

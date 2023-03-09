@@ -73,24 +73,16 @@
   <ImportGroup Label="Shared">
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"
-      Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')"
-      Label="LocalAppDataPlatform" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"
-      Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')"
-      Label="LocalAppDataPlatform" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"
-      Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')"
-      Label="LocalAppDataPlatform" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"
-      Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')"
-      Label="LocalAppDataPlatform" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -125,18 +117,15 @@
         WIN32;_DEBUG;_LIB;__EXCEPTIONS;_HAS_AUTO_PTR_ETC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>
-        $(ProjectDir)..\Dependencies\dirent\include;$(ProjectDir)..\Dependencies\libimobiledevice-vs\libplist\include;$(ProjectDir)..\AltSign\Dependencies\regex\include;$(ProjectDir)..\AltSign\Dependencies\mman;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Dependencies\dirent\include;$(ProjectDir)..\Dependencies\libimobiledevice-vs\libplist\include;$(ProjectDir)..\AltSign\Dependencies\mman;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <EnableModules>true</EnableModules>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>
-        $(SolutionDir)$(Platform)\$(Configuration)\;C:\Program Files
-        (x86)\OpenSSL-Win32\lib;$(SolutionDir)AltSign\Dependencies\regex\lib;$(SolutionDir)Dependencies\Libraries</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libssl.lib;libcrypto.lib;regex.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)Dependencies\Libraries</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libssl.lib;libcrypto.lib;tre.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -148,16 +137,14 @@
       <PreprocessorDefinitions>_DEBUG;_LIB;_HAS_AUTO_PTR_ETC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>
-        $(ProjectDir)..\Dependencies\dirent\include;$(ProjectDir)..\Dependencies\libimobiledevice-vs\libplist\include;$(ProjectDir)..\AltSign\Dependencies\regex\include;$(ProjectDir)..\AltSign\Dependencies\mman;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Dependencies\dirent\include;$(ProjectDir)..\Dependencies\libimobiledevice-vs\libplist\include;$(ProjectDir)..\AltSign\Dependencies\mman;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>
-        $(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)AltSign\Dependencies\regex\lib;$(SolutionDir)Dependencies\Libraries</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libssl.lib;libcrypto.lib;regex.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)Dependencies\Libraries</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libssl.lib;libcrypto.lib;tre.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -172,8 +159,7 @@
         WIN32;NDEBUG;_LIB;__EXCEPTIONS;_HAS_AUTO_PTR_ETC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>
-        $(ProjectDir)..\Dependencies\dirent\include;$(ProjectDir)..\Dependencies\libimobiledevice-vs\libplist\include;$(ProjectDir)..\AltSign\Dependencies\regex\include;$(ProjectDir)..\AltSign\Dependencies\mman;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Dependencies\dirent\include;$(ProjectDir)..\Dependencies\libimobiledevice-vs\libplist\include;$(ProjectDir)..\AltSign\Dependencies\mman;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -181,10 +167,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>
-        $(SolutionDir)$(Platform)\$(Configuration)\;C:\Program Files
-        (x86)\OpenSSL-Win32\lib;$(SolutionDir)AltSign\Dependencies\regex\lib;$(SolutionDir)Dependencies\Libraries</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libssl.lib;libcrypto.lib;regex.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)Dependencies\Libraries</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libssl.lib;libcrypto.lib;tre.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -198,8 +182,7 @@
       <PreprocessorDefinitions>NDEBUG;_LIB;_HAS_AUTO_PTR_ETC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>
-        $(ProjectDir)..\Dependencies\dirent\include;$(ProjectDir)..\Dependencies\libimobiledevice-vs\libplist\include;$(ProjectDir)..\AltSign\Dependencies\regex\include;$(ProjectDir)..\AltSign\Dependencies\mman;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Dependencies\dirent\include;$(ProjectDir)..\Dependencies\libimobiledevice-vs\libplist\include;$(ProjectDir)..\AltSign\Dependencies\mman;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -207,9 +190,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>
-        $(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)AltSign\Dependencies\regex\lib;$(SolutionDir)Dependencies\Libraries</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libssl.lib;libcrypto.lib;regex.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)Dependencies\Libraries</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libssl.lib;libcrypto.lib;tre.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
