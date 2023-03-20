@@ -1,5 +1,9 @@
 # SideServer for Windows
 
+![Alt](https://repobeats.axiom.co/api/embed/ba7a42b60a90febec0c7bb80f85022d92866e3fb.svg "Repobeats analytics image")
+
+## Building
+
 In order to compile SideServer on VS 2019/2022 there a few things required.
 Install the installer plugin that match your VS version from [here](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects).
 
