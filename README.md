@@ -1,5 +1,7 @@
 # SideServer for Windows
 
+[![MSBuild](https://github.com/SideStore/SideServer-Windows/actions/workflows/build.yaml/badge.svg)](https://github.com/SideStore/SideServer-Windows/actions/workflows/build.yaml)
+
 ![Alt](https://repobeats.axiom.co/api/embed/ba7a42b60a90febec0c7bb80f85022d92866e3fb.svg "Repobeats analytics image")
 
 ## Building
