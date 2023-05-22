@@ -1,0 +1,62 @@
+name: MSBuild
+
+on:
+  push:
+    branches: [ "develop", "Altserver-windows-actions" ]
+  pull_request:
+    branches: [ "develop" ]
+
+env:
+  # https://docs.github.com/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+  PROJECT_FILE_PATH: AltServer.sln
+  BUILD_PLATFORM: x86
+  BUILD_CONFIGURATION: Release
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Checkout submodules
+      run: git submodule update --force --recursive --init --remote
+
+    - name: Add MSBuild
+      uses: microsoft/setup-msbuild@v1.0.2 
+   
+    - name: Run get-source in Libimobiledevice-vs
+      run: cd Dependencies/libimobiledevice-vs; ./get-source.cmd
+
+    - name: Cache vcpkg dir
+      id: cache-vcpkg-dir
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-vcpkg-dir
+      with:
+        path: c:\vcpkg
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+
+    - name: Intergrate vcpkg packages
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+     # run: cd "c:\vcpkg"; ./bootstrap-vcpkg.bat; vcpkg install --feature-flags=manifests,binarycaching,default-features,websockets --recurse openssl boost-regex:x64-windows dirent mdnsresponder winsparkle libiconv:x64-windows zlib:x64-windows; vcpkg integrate install
+      run: cd "c:\vcpkg"; ./bootstrap-vcpkg.bat; vcpkg integrate install
+
+    - name: Build
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      run: |
+        msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} /p:SolutionDir="${{github.workspace}}\\" ${{env.PROJECT_FILE_PATH}}
+
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        name: AltServer
+        path: ${{github.workspace}}\Win32\Release
