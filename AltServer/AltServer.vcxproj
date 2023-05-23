@@ -22,7 +22,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{469259AB-0F25-4B5E-B15C-591001FB9448}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>AltServer</RootNamespace>
+    <RootNamespace>SideServer</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
