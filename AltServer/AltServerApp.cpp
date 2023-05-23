@@ -544,7 +544,7 @@ void AltServerApp::Start(HWND windowHandle, HINSTANCE instanceHandle)
 #if SPOOF_MAC
 		if (!this->CheckiCloudDependencies())
 		{
-			this->ShowAlert("iCloud Not Installed", "iCloud must be installed from Apple's website (not the Microsoft Store) in order to use AltStore.");
+			this->ShowAlert("iCloud Not Installed", "iCloud must be installed from Apple's website (not the Microsoft Store) in order to use SideStore.");
 		}
 #endif
 	}
@@ -554,16 +554,16 @@ void AltServerApp::Start(HWND windowHandle, HINSTANCE instanceHandle)
 	}
 	catch (Error& error)
 	{
-		this->ShowAlert("Failed to Start AltServer", error.localizedDescription());
+		this->ShowAlert("Failed to Start SideServer", error.localizedDescription());
 	}
 	catch (std::exception& exception)
 	{
-		this->ShowAlert("Failed to Start AltServer", exception.what());
+		this->ShowAlert("Failed to Start SideServer", exception.what());
 	}
 
 	if (!this->presentedRunningNotification())
 	{
-		this->ShowNotification("AltServer Running", "AltServer will continue to run in the background listening for AltStore.");
+		this->ShowNotification("SideServer Running", "SideServer will continue to run in the background listening for SideStore.");
 		this->setPresentedRunningNotification(true);
 	}
 	else
@@ -587,7 +587,7 @@ void AltServerApp::CheckForUpdates()
 
 pplx::task<std::shared_ptr<Application>> AltServerApp::InstallApplication(std::optional<std::string> filepath, std::shared_ptr<Device> installDevice, std::string appleID, std::string password)
 {
-    auto appName = filepath.has_value() ? fs::path(*filepath).filename().string() : "AltStore";
+    auto appName = filepath.has_value() ? fs::path(*filepath).filename().string() : "SideStore";
     auto localizedFailure = "Could not install " + appName + " to " + installDevice->name() + ".";
 
 	return this->_InstallApplication(filepath, installDevice, appleID, password)
@@ -876,7 +876,7 @@ pplx::task<std::string> AltServerApp::FetchAltStoreDownloadURL(std::shared_ptr<D
 	})
 	.then([=](http_response response)
 	{
-		odslog("Received AltStore source response status code: " << response.status_code());
+		odslog("Received SideStore source response status code: " << response.status_code());
 		return response.extract_vector();
 	})
 	.then([=](std::vector<unsigned char> decompressedData)
@@ -1164,8 +1164,8 @@ pplx::task<std::shared_ptr<Certificate>> AltServerApp::FetchCertificate(std::sha
 				// Machine name starts with AltStore.
 
 				auto alertResult = MessageBox(NULL,
-					L"Please use the same AltServer you previously used with this Apple ID, or else apps installed with other AltServers will stop working.\n\nAre you sure you want to continue?",
-					L"Installing AltStore with Multiple AltServers Not Supported",
+					L"Please use the same SideServer you previously used with this Apple ID, or else apps installed with other SideServers will stop working.\n\nAre you sure you want to continue?",
+					L"Installing SideStore with Multiple SideServers Not Supported",
 					MB_OKCANCEL);
 
 				if (alertResult == IDCANCEL)
@@ -1946,7 +1946,7 @@ void AltServerApp::HandleAnisetteError(AnisetteError& error)
 		case AnisetteErrorCode::iTunesNotInstalled: 
 		{
 			title = (wchar_t *)L"iTunes Not Found";
-			message = (wchar_t*)LR"(Download the latest version of iTunes from apple.com (not the Microsoft Store) in order to continue using AltServer.
+			message = (wchar_t*)LR"(Download the latest version of iTunes from apple.com (not the Microsoft Store) in order to continue using SideServer.
 
 If you already have iTunes installed, please locate the "Apple" folder that was installed with iTunes. This can normally be found at:
 
@@ -1993,7 +1993,7 @@ If you already have iTunes installed, please locate the "Apple" folder that was 
 
 		case AnisetteErrorCode::iCloudNotInstalled: 
 			title = (wchar_t*)L"iCloud Not Found";
-			message = (wchar_t*)LR"(Download the latest version of iCloud from apple.com (not the Microsoft Store) in order to continue using AltServer.
+			message = (wchar_t*)LR"(Download the latest version of iCloud from apple.com (not the Microsoft Store) in order to continue using SideServer.
 
 If you already have iCloud installed, please locate the "Apple" folder that was installed with iCloud. This can normally be found at:
 
