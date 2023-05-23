@@ -14,5 +14,5 @@ The code should now compile, but only in x86 for now.
 
 - [ ] Fix x64 build??
 - [x] Add pairing file support (commented out, some module error)
-- [ ] Rebrand AltServer to SideServer
+- [x] Rebrand AltServer to SideServer
 - [ ] Add beta build install option
