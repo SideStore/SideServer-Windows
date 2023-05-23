@@ -449,7 +449,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				AppendMenu(hPopupMenu, MF_STRING, ID_MENU_LAUNCH_AT_LOGIN, L"Automatically Launch at Startup");
 			}
 			
-			const wchar_t* installTitle = isSideloadingIPA ? L"Sideload .ipa" : L"Install AltStore";
+			const wchar_t* installTitle = isSideloadingIPA ? L"Sideload .ipa" : L"Install SideStore";
 			AppendMenu(hPopupMenu, MF_STRING | MF_POPUP, (UINT)installMenu, installTitle);
 			AppendMenu(hPopupMenu, MF_STRING | MF_POPUP, (UINT)_enableJITMenu, L"Enable JIT");
 
