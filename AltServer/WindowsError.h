@@ -21,7 +21,7 @@ public:
         switch ((WindowsErrorCode)this->code())
         {
         case WindowsErrorCode::WindowsDefenderBlockedCommunication:
-            return "Windows Defender blocked AltStore from communicating with AltServer.";
+            return "Windows Defender blocked SideStore from communicating with SideServer.";
         }
 
         return std::nullopt;
