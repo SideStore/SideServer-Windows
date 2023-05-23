@@ -202,16 +202,16 @@ public:
 		}
 
 		case ServerErrorCode::UnknownRequest:
-			return "AltServer does not support this request.";
+			return "SideServer does not support this request.";
 
 		case ServerErrorCode::UnknownResponse:
-			return "AltStore received an unknown response from AltServer.";
+			return "SideStore received an unknown response from SideServer.";
 
 		case ServerErrorCode::InvalidAnisetteData:
 			return "The provided anisette data is invalid.";
 
 		case ServerErrorCode::PluginNotFound:
-			return "AltServer could not connect to Mail plug-in.";
+			return "SideServer could not connect to Mail plug-in.";
 
 		case ServerErrorCode::ProfileNotFound:
 			return "The provisioning profile could not be found.";
