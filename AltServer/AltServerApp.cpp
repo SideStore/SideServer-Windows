@@ -509,9 +509,9 @@ void AltServerApp::Start(HWND windowHandle, HINSTANCE instanceHandle)
 	_instanceHandle = instanceHandle;
 
 #if STAGING
-	win_sparkle_set_appcast_url("https://raw.githubusercontent.com/SideStore/SideServer-Windows/Develop/sparkle-windows-staging.xml");
+	win_sparkle_set_appcast_url("https://raw.githubusercontent.com/SideStore/SideServer-Windows/develop/sparkle-windows-staging.xml");
 #else
-	win_sparkle_set_appcast_url("https://raw.githubusercontent.com/SideStore/SideServer-Windows/Develop/sparkle-windows.xml");
+	win_sparkle_set_appcast_url("https://raw.githubusercontent.com/SideStore/SideServer-Windows/develop/sparkle-windows.xml");
 #endif
 
 	win_sparkle_init();
