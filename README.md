@@ -1,18 +1,24 @@
 # SideServer for Windows
 
-In order to compile SideServer on VS 2019/2022 there a few things required.
-Install the installer plugin that match your VS version from [here](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects).
+In order to compile SideServer on VS 2019/2022, follow these steps
 
-1. clone the repository **recursively** and checkout the `error_handling` branch
-2. install and bootstrap [VCPKG](https://github.com/microsoft/vcpkg)
-3. In the `Dependencies\libimobiledevice-vs` folder, run the `./get-source` script to download the source repos
-4. In `AltServer` and `AltSign`, change the toolset to `v143` (if using VS2022)
+**Dev Environment**
+You need all of the below to build SideServer
+- `Desktop development with C++` set of tools in VS Installer
+- `MSBuild support for LLVM (clang-cl) toolset` in VS Installer
+- `Test Adapter for Boost.Test` in VS Installer
+- Bootstrapped and Integrated  [VCPKG](https://github.com/microsoft/vcpkg) package manager setup.
+- Installer projects plugin that matches your VS version - [VS2017/2019](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects), [VS2022](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects).
 
-The code should now compile, but only in x86 for now.
+**Build Instructions**
+1. clone the repository **recursively** (or run `git submodule update --init --recursive` after pull).
+2. In the `Dependencies\libimobiledevice-vs` folder, run the `./get-source` script to download the source repos
+3. If using VS2022, in the `AltServer` and `AltSign` projects, change the MSVC toolset to `v143`.
+4. Compile (x86 only - the project won't work in x64).
 
 ### To Do
 
-- [ ] Fix x64 build??
 - [x] Add pairing file support (commented out, some module error)
-- [ ] Rebrand AltServer to SideServer
-- [ ] Add beta build install option
+- [x] Rebrand AltServer to SideServer
+- [ ] Add release channels and correct IPA links
+- [ ] Testing with users
