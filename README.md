@@ -1,9 +1,8 @@
 # SideServer for Windows
 
-In order to compile SideServer on VS 2019/2022, follow these steps
+In order to compile SideServer on VS 2019/2022 (not tested on any earlier versions), ensure you have the correct environment then follow the steps below.
 
 **Dev Environment**
-You need all of the below to build SideServer
 - `Desktop development with C++` set of tools in VS Installer
 - `MSBuild support for LLVM (clang-cl) toolset` in VS Installer
 - `Test Adapter for Boost.Test` in VS Installer
