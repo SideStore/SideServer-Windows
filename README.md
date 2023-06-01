@@ -10,8 +10,8 @@ In order to compile SideServer on VS 2019/2022 (not tested on any earlier versio
 - Installer projects plugin that matches your VS version - [VS2017/2019](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects), [VS2022](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects).
 
 **Build Instructions**
-1. clone the repository **recursively** (or run `git submodule update --init --recursive` after pull).
-2. In the `Dependencies\libimobiledevice-vs` folder, run the `./get-source` script to download the source repos
+1. Clone the repository **recursively** (or run `git submodule update --init --recursive` after pull).
+2. In the `Dependencies\libimobiledevice-vs` folder, run the `./get-source` script to download the libimobiledevice source repos
 3. If using VS2022, in the `AltServer` and `AltSign` projects, change the MSVC toolset to `v143`.
 4. Compile (x86 only - the project won't work in x64).
 
