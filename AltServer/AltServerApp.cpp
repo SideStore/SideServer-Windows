@@ -457,7 +457,7 @@ AltServerApp* AltServerApp::instance()
 
 AltServerApp::AltServerApp() : _appGroupSemaphore(1)
 {
-	 CLSIDFromString(L"{96A5974D-D3A2-909A-B6BD-4FF84E7880F7}", &_notificationIconGUID);
+	 CLSIDFromString(L"{A549EEDA-6301-41BA-8323-312A2AF9D380}", &_notificationIconGUID);
 }
 
 AltServerApp::~AltServerApp()
@@ -560,6 +560,8 @@ void AltServerApp::Start(HWND windowHandle, HINSTANCE instanceHandle)
 	{
 		this->ShowAlert("Failed to Start SideServer", exception.what());
 	}
+
+	odslog("SideServer launched?", !this->presentedRunningNotification())
 
 	if (!this->presentedRunningNotification())
 	{

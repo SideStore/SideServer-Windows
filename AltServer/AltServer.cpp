@@ -211,6 +211,7 @@ int CALLBACK WinMain(
 	// hWnd: the value returned from CreateWindow
 	// nCmdShow: the fourth parameter from WinMain
 	ShowWindow(hWnd, nCmdShow);
+	//ShowWindow(hWnd, SW_HIDE);
 	UpdateWindow(hWnd);
 
 	AltServerApp::instance()->Start(hWnd, hInst);
