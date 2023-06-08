@@ -123,5 +123,8 @@
     <Image Include="Icon.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="MenuBarIcon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

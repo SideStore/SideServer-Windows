@@ -457,7 +457,7 @@ AltServerApp* AltServerApp::instance()
 
 AltServerApp::AltServerApp() : _appGroupSemaphore(1)
 {
-	 CLSIDFromString(L"{96A5974D-D3A2-909A-B6BD-4FF84E7880F7}", &_notificationIconGUID);
+	 CLSIDFromString(L"{A549EEDA-6301-41BA-8323-312A2AF9D380}", &_notificationIconGUID);
 }
 
 AltServerApp::~AltServerApp()
@@ -509,9 +509,9 @@ void AltServerApp::Start(HWND windowHandle, HINSTANCE instanceHandle)
 	_instanceHandle = instanceHandle;
 
 #if STAGING
-	win_sparkle_set_appcast_url("https://raw.githubusercontent.com/SideStore/SideServer-Windows/develop/sparkle-windows-staging.xml");
+	win_sparkle_set_appcast_url("https://altstore.io/altserver/sparkle-windows-staging.xml");
 #else
-	win_sparkle_set_appcast_url("https://raw.githubusercontent.com/SideStore/SideServer-Windows/develop/sparkle-windows.xml");
+	win_sparkle_set_appcast_url("https://altstore.io/altserver/sparkle-windows.xml");
 #endif
 
 	win_sparkle_init();
@@ -560,6 +560,8 @@ void AltServerApp::Start(HWND windowHandle, HINSTANCE instanceHandle)
 	{
 		this->ShowAlert("Failed to Start SideServer", exception.what());
 	}
+
+	odslog("SideServer launched?", !this->presentedRunningNotification())
 
 	if (!this->presentedRunningNotification())
 	{
