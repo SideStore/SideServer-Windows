@@ -19,20 +19,5 @@
             </sparkle:installerArguments>
         </item>
         
-        <item>
-            <title>Version 1.0.0.0</title>
-            <description><![CDATA[
-                <ul>
-                    <li>initial release</li>
-                </ul>
-            ]]>
-            </description>
-            <pubDate>Sun, 30 july 2023 12:00:00 -0006</pubDate>
-            <enclosure url="https://github.com/SideStore/SideServer-Windows/releases/download/1.7/SideServer.Installer.msi" sparkle:version="1.0.0.0" length="0" type="application/octet-stream"/>
-            <sparkle:installerArguments>
-                /passive
-            </sparkle:installerArguments>
-        </item>
-        
     </channel>
 </rss>
