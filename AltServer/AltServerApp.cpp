@@ -1323,10 +1323,7 @@ pplx::task<std::shared_ptr<ProvisioningProfile>> AltServerApp::PrepareProvisioni
 
 	if (app->isAltStoreApp())
 	{
-		std::stringstream ss;
-		ss << "com." << team->identifier() << "." << parentBundleID;
-
-		updatedParentBundleID = ss.str();
+		updatedParentBundleID = parentBundleID + "." + team->identifier();
 	}
 	else
 	{
