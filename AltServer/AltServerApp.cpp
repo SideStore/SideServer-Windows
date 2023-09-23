@@ -1308,27 +1308,11 @@ pplx::task<std::shared_ptr<ProvisioningProfile>> AltServerApp::PrepareProvisioni
 	std::string preferredName;
 	std::string parentBundleID;
 
-	if (parentApp.has_value())
-	{
-		parentBundleID = (*parentApp)->bundleIdentifier();
-		preferredName = (*parentApp)->name() + " " + app->name();
-	}
-	else
-	{
-		parentBundleID = app->bundleIdentifier();
-		preferredName = app->name();
-	}
+	parentBundleID = app->bundleIdentifier();
+	preferredName = app->name();
 
 	std::string updatedParentBundleID;
-
-	if (app->isAltStoreApp())
-	{
-		updatedParentBundleID = parentBundleID + "." + team->identifier();
-	}
-	else
-	{
-		updatedParentBundleID = parentBundleID + "." + team->identifier();
-	}
+	updatedParentBundleID = parentBundleID + "." + team->identifier();
 
 	std::string bundleID = std::regex_replace(app->bundleIdentifier(), std::regex(parentBundleID), updatedParentBundleID);
 
