@@ -207,6 +207,8 @@ int CALLBACK WinMain(
 		return 1;
 	}
 
+	MessageBox(NULL, _T("SideServer for Microsoft Windows® is not functional, please follow https://wiki.sidestore.io/guides/getting-started/ instead"), _T("https://wiki.sidestore.io/guides/getting-started/"), NULL);
+
 	// The parameters to ShowWindow explained:
 	// hWnd: the value returned from CreateWindow
 	// nCmdShow: the fourth parameter from WinMain
